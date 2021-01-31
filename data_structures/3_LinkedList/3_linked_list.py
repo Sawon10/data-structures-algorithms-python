@@ -84,16 +84,19 @@ class LinkedList:
         self.head = None
         for data in data_list:
             self.insert_at_end(data)
-
-
+    def insert_after_value(self, val, data):
+        itr = self.head
+        while itr:
+            if itr.data == val:
+                node = Node(data, itr.next)
+                itr.next = node
+                break
+            itr = itr.next
+        if itr == None:
+            raise Exception("data not in linked list")
 if __name__ == '__main__':
     ll = LinkedList()
     ll.insert_values(["banana","mango","grapes","orange"])
-    ll.insert_at(1,"blueberry")
-    ll.remove_at(2)
     ll.print()
-
-    ll.insert_values([45,7,12,567,99])
-    ll.insert_at_end(67)
+    ll.insert_after_value("mango","apple") # insert apple after mango
     ll.print()
-
